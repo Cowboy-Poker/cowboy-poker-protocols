@@ -1,3 +1,111 @@
 syntax = "proto3";
 
 package poker_response;
+
+// 방 목록 응답
+message S_GetRoomList {
+    repeated RoomInfo rooms = 1;
+}
+
+// 방 생성 응답
+message S_CreateRoom {
+    bool success = 1;
+    string message = 2;
+    RoomInfo room = 3;
+}
+
+// 방 입장 응답 (입장한 본인 + 기존 플레이어에게 브로드캐스트)
+message S_JoinRoom {
+    bool success = 1;
+    string message = 2;
+    RoomInfo room = 3;
+}
+
+// 방 퇴장 응답 (브로드캐스트)
+message S_LeaveRoom {
+    string userId = 1;
+}
+
+// 게임 시작 응답 - 각자 핸드 카드 전달 (개인 전송)
+message S_DealCards {
+    repeated Card handCards = 1; // 홀 카드 2장
+}
+
+// 베팅 차례 알림 (브로드캐스트)
+message S_BetTurn {
+    string userId = 1;
+    int32 callAmount = 2;  // 콜하려면 얼마 필요한지
+    int32 minRaise = 3;    // 최소 레이즈 금액
+    int32 timeLimit = 4;   // 제한 시간(초)
+}
+
+// 베팅 결과 브로드캐스트
+message S_BetResult {
+    string userId = 1;
+    BetActionType action = 2;
+    int32 amount = 3;
+    int32 pot = 4; // 현재 총 팟
+}
+
+// 커뮤니티 카드 공개 (브로드캐스트)
+message S_OpenCommunityCards {
+    GamePhase phase = 1;
+    repeated Card cards = 2; // 플랍 3장 / 턴 1장 / 리버 1장
+}
+
+// 게임 결과 (브로드캐스트)
+message S_GameResult {
+    repeated PlayerResult results = 1;
+}
+
+// 공통 데이터 타입
+
+message RoomInfo {
+    int32 roomId = 1;
+    string roomName = 2;
+    int32 currentPlayers = 3;
+    int32 maxPlayers = 4;
+    int32 blindAmount = 5;
+    RoomState state = 6;
+}
+
+message Card {
+    CardSuit suit = 1;
+    int32 number = 2; // 1(A) ~ 13(K)
+}
+
+message PlayerResult {
+    string userId = 1;
+    repeated Card handCards = 2;
+    int32 gainAmount = 3; // 획득 금액 (잃으면 음수)
+    bool isWinner = 4;
+    string handRank = 5; // "풀하우스", "스트레이트" 등
+}
+
+enum BetActionType {
+    FOLD = 0;
+    CHECK = 1;
+    CALL = 2;
+    RAISE = 3;
+    ALL_IN = 4;
+}
+
+enum GamePhase {
+    PRE_FLOP = 0;
+    FLOP = 1;
+    TURN = 2;
+    RIVER = 3;
+    SHOWDOWN = 4;
+}
+
+enum CardSuit {
+    SPADE = 0;
+    HEART = 1;
+    DIAMOND = 2;
+    CLUB = 3;
+}
+
+enum RoomState {
+    WAITING = 0;
+    IN_GAME = 1;
+}

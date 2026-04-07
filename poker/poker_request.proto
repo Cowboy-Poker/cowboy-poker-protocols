@@ -1,3 +1,39 @@
 syntax = "proto3";
 
 package poker_request;
+
+// 방 목록 요청
+message C_GetRoomList {}
+
+// 방 생성 요청
+message C_CreateRoom {
+    string roomName = 1;
+    int32 maxPlayers = 2;  // 최대 5
+    int32 blindAmount = 3; // 스몰 블라인드 금액
+}
+
+// 방 입장 요청
+message C_JoinRoom {
+    int32 roomId = 1;
+}
+
+// 방 퇴장 요청
+message C_LeaveRoom {}
+
+// 게임 시작 요청 (방장만 가능)
+message C_StartGame {}
+
+// 베팅 액션 요청
+message C_BetAction {
+    BetActionType action = 1;
+    int32 amount = 2; // RAISE일 때만 사용
+}
+
+// 베팅 액션 타입
+enum BetActionType {
+    FOLD = 0;
+    CHECK = 1;
+    CALL = 2;
+    RAISE = 3;
+    ALL_IN = 4;
+}
