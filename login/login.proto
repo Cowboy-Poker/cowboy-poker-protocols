@@ -6,7 +6,6 @@ package login;
 message C_Login {
     string user_id = 1;
     string password = 2;
-    string nickname = 3;
 }
 
 // 로그인 응답
@@ -19,6 +18,7 @@ message S_LogIn{
 message C_Register {
     string user_id = 1;
     string password = 2;
+    string nickname = 3;
 }
 
 // 회원가입
