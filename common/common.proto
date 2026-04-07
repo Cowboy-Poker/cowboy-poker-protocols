@@ -1,3 +1,83 @@
 syntax = "proto3";
 
 package common;
+
+// 무기 종류
+enum WeaponType {
+  WEAPON_NONE = 0;
+  WEAPON_RIFLE_A = 1;
+  WEAPON_SHOTGUN_A = 2;
+  WEAPON_SHOTGUN_B = 3;
+  WEAPON_REVOLVER_A = 4;
+  WEAPON_REVOLVER_B = 5;
+}
+
+// 총알 종류
+enum AmmoType {
+  AMMO_NONE = 0;
+  AMMO_RIFLE = 1;
+  AMMO_SHOTGUN = 2;
+  AMMO_REVOLVER = 3;
+}
+
+// 캐릭터 종류
+enum CharacterType {
+  CHARACTER_NONE = 0;
+  CHARACTER_BADGUY = 1;
+  CHARACTER_COWGIRL = 2;
+}
+
+// 위치 정보
+message TransformInfo {
+    float posX = 1; // 기본값 : -9 ~ 9
+    float posY = 2; // 기본값 : 1
+    float posZ = 3; // 기본값 : -8 ~ 8
+    float rot = 4; // 기본값 : 0~360
+}
+
+// 유저 정보
+message UserInfo {
+  string user_id = 1;
+  string nickname = 2;
+  int32 hp = 3;
+  int64 balance = 4;
+  TransformInfo transform_info = 5;
+  CharacterType character_type = 6;
+}
+
+// 배틀 중 유저 정보
+message BattleUserInfo {
+    UserInfo user_info = 1;
+    InventoryInfo inventory_info = 2;
+    TransformInfo transform_info = 3;
+    CharacterType character_type = 4;
+}
+
+// 인벤토리 정보
+message InventoryInfo
+{
+    WeaponType equipped_weapon_type = 1;
+    AmmoType equipped_ammo_type = 2;
+}
+
+// 스크린 텍스트
+message ScreenText{
+    string msg = 1;
+    bool typingAnimation = 2;
+    optional ScreenTextAlignment alignment = 3;
+    optional Color textColor = 4;
+    optional Color screenColor = 5;
+}
+  
+// 스크린 텍스트 조정
+message ScreenTextAlignment {
+    int32 x = 1;
+    int32 y = 2;
+}
+  
+// 색상
+message Color {
+    int32 r = 1;
+    int32 g = 2;
+    int32 b = 3;
+}

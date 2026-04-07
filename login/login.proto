@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package login;
+
+// 로그인 요청
+message C_Login {
+    string user_id = 1;
+    string password = 2;
+    string nickname = 3;
+}
+
+// 로그인 응답
+message S_LogIn{
+    bool success = 1;
+    string message = 2;
+}
+
+// 회원가입 요청
+message C_Register {
+    string user_id = 1;
+    string password = 2;
+}
+
+// 회원가입
+message S_Register{
+    bool success = 1;
+    string message = 2;
+}
+  
