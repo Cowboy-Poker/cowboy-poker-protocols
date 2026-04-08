@@ -37,11 +37,17 @@ message S_StartGame {
 
 
 // 베팅 차례 알림 (브로드캐스트)
+// userId가 본인이면 canXxx 플래그에 따라 버튼 활성화
 message S_BetTurn {
     string userId = 1;
-    int32 callAmount = 2;  // 콜하려면 얼마 필요한지
-    int32 minRaise = 3;    // 최소 레이즈 금액
-    int32 timeLimit = 4;   // 제한 시간(초)
+    int32 callAmount = 2;   // 콜하려면 얼마 필요한지 (0이면 콜 불필요)
+    int32 minRaise = 3;     // 최소 레이즈 금액
+    int32 timeLimit = 4;    // 제한 시간(초)
+    bool canCheck = 5;      // 체크 가능 여부 (callAmount == 0)
+    bool canCall = 6;       // 콜 가능 여부 (callAmount > 0 && balance >= callAmount)
+    bool canRaise = 7;      // 레이즈 가능 여부 (balance > callAmount)
+    bool canFold = 8;       // 폴드 가능 여부 (항상 true)
+    int32 maxRaise = 9;     // 최대 레이즈 금액 (보유 잔액 기준)
 }
 
 // 베팅 결과 브로드캐스트
