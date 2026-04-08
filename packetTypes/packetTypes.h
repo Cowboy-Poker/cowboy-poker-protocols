@@ -18,7 +18,7 @@ enum class PacketType : uint16_t
     C_LEAVE_ROOM         = 206,
     S_LEAVE_ROOM         = 207,
     C_START_GAME         = 208,
-    S_DEAL_CARDS         = 209,
+    S_START_GAME         = 209,
     C_BET_ACTION         = 210,
     S_BET_TURN           = 211,
     S_BET_RESULT         = 212,

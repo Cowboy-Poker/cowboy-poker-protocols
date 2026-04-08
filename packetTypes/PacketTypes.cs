@@ -16,7 +16,7 @@ public enum PacketType : ushort
     C_LeaveRoom         = 206,
     S_LeaveRoom         = 207,
     C_StartGame         = 208,
-    S_DealCards         = 209,
+    S_StartGame         = 209,
     C_BetAction         = 210,
     S_BetTurn           = 211,
     S_BetResult         = 212,

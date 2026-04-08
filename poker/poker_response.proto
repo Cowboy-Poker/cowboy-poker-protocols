@@ -26,10 +26,15 @@ message S_LeaveRoom {
     string userId = 1;
 }
 
-// 게임 시작 응답 - 각자 핸드 카드 전달 (개인 전송)
-message S_DealCards {
-    repeated Card handCards = 1; // 홀 카드 2장
+// 게임 시작 응답 (개인별 전송 - 본인 카드 + 게임 정보)
+message S_StartGame {
+    int32 mySeatNumber = 1;
+    int32 sbSeatNumber = 2;
+    int32 bbSeatNumber = 3;
+    repeated Card handCards = 4;        // 홀 카드 2장
+    repeated PlayerInfo players = 5;    // 이번 게임 참여 플레이어 목록
 }
+
 
 // 베팅 차례 알림 (브로드캐스트)
 message S_BetTurn {
@@ -67,6 +72,12 @@ message RoomInfo {
     int32 maxPlayers = 4;
     int32 blindAmount = 5;
     RoomState state = 6;
+    repeated PlayerInfo players = 7;
+}
+
+message PlayerInfo {
+    string userId = 1;
+    int32 seatNumber = 2; // 1~5번
 }
 
 message Card {
