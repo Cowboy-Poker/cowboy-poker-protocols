@@ -10,8 +10,21 @@ message C_Login {
 
 // 로그인 응답
 message S_Login {
-    bool success = 1;
-    string message = 2;
+    bool   success  = 1;
+    string message  = 2;
+
+    // 유저 세션 전체 정보
+    string nickname  = 3;
+    int64  balance   = 4;
+    string scene     = 5;  // 현재 씬 (Lobby or Poker)
+    int32  hp        = 6;
+    int32  charType  = 7;  // CharacterType
+    float  posX      = 8;
+    float  posY      = 9;
+    float  posZ      = 10;
+    float  rot       = 11;
+    int32  weapon    = 12; // WeaponType
+    int32  ammoType  = 13; // AmmoType
 }
 
 // 회원가입 요청

@@ -55,7 +55,8 @@ message S_BetResult {
     string userId = 1;
     BetActionType action = 2;
     int32 amount = 3;
-    int32 pot = 4; // 현재 총 팟
+    int32 pot = 4;            // 현재 총 팟
+    int64 playerBalance = 5;  // 베팅 후 해당 플레이어 잔액
 }
 
 // 커뮤니티 카드 공개 (브로드캐스트)
@@ -83,7 +84,8 @@ message RoomInfo {
 
 message PlayerInfo {
     string userId = 1;
-    int32 seatNumber = 2; // 1~5번
+    int32  seatNumber = 2; // 1~5번
+    int64  balance = 3;    // 보유 금액
 }
 
 message Card {
@@ -94,9 +96,10 @@ message Card {
 message PlayerResult {
     string userId = 1;
     repeated Card handCards = 2;
-    int32 gainAmount = 3; // 획득 금액 (잃으면 음수)
+    int32 gainAmount = 3;    // 획득 금액 (잃으면 음수)
     bool isWinner = 4;
-    string handRank = 5; // "풀하우스", "스트레이트" 등
+    string handRank = 5;     // "풀하우스", "스트레이트" 등
+    int64 finalBalance = 6;  // 게임 종료 후 최종 잔액
 }
 
 enum BetActionType {
