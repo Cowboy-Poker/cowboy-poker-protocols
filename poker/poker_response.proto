@@ -36,18 +36,30 @@ message S_StartGame {
 }
 
 
-// 베팅 차례 알림 (브로드캐스트)
-// userId가 본인이면 canXxx 플래그에 따라 버튼 활성화
+// 베팅 차례 알림
+// userId가 본인이면 canXxx 플래그로 버튼 활성화
+// 레이즈 슬라이더 범위: minBet ~ maxBet
 message S_BetTurn {
-    string userId = 1;
-    int32 callAmount = 2;   // 콜하려면 얼마 필요한지 (0이면 콜 불필요)
-    int32 minRaise = 3;     // 최소 레이즈 금액
-    int32 timeLimit = 4;    // 제한 시간(초)
-    bool canCheck = 5;      // 체크 가능 여부 (callAmount == 0)
-    bool canCall = 6;       // 콜 가능 여부 (callAmount > 0 && balance >= callAmount)
-    bool canRaise = 7;      // 레이즈 가능 여부 (balance > callAmount)
-    bool canFold = 8;       // 폴드 가능 여부 (항상 true)
-    int32 maxRaise = 9;     // 최대 레이즈 금액 (보유 잔액 기준)
+    string userId    = 1;
+    int32  timeLimit = 2;  // 제한 시간(초)
+
+    // 액션 가능 여부 (서버 계산, 클라이언트는 이 값만 보고 UI 설정)
+    bool canFold  = 3;
+    bool canCheck = 4;  // callAmount == 0
+    bool canCall  = 5;  // balance >= callAmount
+    bool canRaise = 6;  // balance > callAmount (콜 후 잔액 > 0)
+    bool canAllIn = 7;  // 항상 true (balance > 0)
+
+    // 콜 정보
+    int64 callAmount = 8;  // 콜하려면 얼마 필요한지 (0이면 콜 불필요)
+
+    // 레이즈 슬라이더 범위
+    int64 minBet = 9;   // 최소 레이즈 가능 총액 (currentBet + minRaise)
+    int64 maxBet = 10;  // 최대 베팅 가능 총액 (보유 잔액 전체 = 올인)
+
+    // 현재 팟 정보 (UI 표시용)
+    int64 pot     = 11;
+    int64 balance = 12; // 본인 현재 잔액
 }
 
 // 베팅 결과 브로드캐스트
