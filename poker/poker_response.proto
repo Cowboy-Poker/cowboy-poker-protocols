@@ -60,6 +60,9 @@ message S_BetTurn {
     // 현재 팟 정보 (UI 표시용)
     int64 pot     = 11;
     int64 balance = 12; // 본인 현재 잔액
+
+    // 현재 스트리트 — OPEN_COMMUNITY_CARDS 없이도 UI 동기화 (패킷 순서/유실 대비)
+    GamePhase gamePhase = 13;
 }
 
 // 베팅 결과 브로드캐스트
@@ -89,7 +92,7 @@ message RoomInfo {
     string roomName = 2;
     int32 currentPlayers = 3;
     int32 maxPlayers = 4;
-    int32 blindAmount = 5;
+    int32 blindAmount = 5; // 빅 블라인드
     RoomState state = 6;
     repeated PlayerInfo players = 7;
 }

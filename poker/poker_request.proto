@@ -9,7 +9,7 @@ message C_GetRoomList {}
 message C_CreateRoom {
     string roomName = 1;
     int32 maxPlayers = 2;  // 최대 5
-    int32 blindAmount = 3; // 스몰 블라인드 금액
+    int32 blindAmount = 3; // 빅 블라인드(테이블 스테이크). 스몰은 서버에서 BB/2로 계산.
 }
 
 // 방 입장 요청
