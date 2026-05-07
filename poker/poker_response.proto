@@ -80,9 +80,28 @@ message S_OpenCommunityCards {
     repeated Card cards = 2; // 플랍 3장 / 턴 1장 / 리버 1장
 }
 
-// 게임 결과 (브로드캐스트)
+// 게임 결과 (개인별 전송)
 message S_GameResult {
     repeated PlayerResult results = 1;
+    // true: 리버까지 진행 후 패 비교(비폴드 플레이어 홀 카드 공개). false: 폴드 펏 등으로 종료 → 홀 카드 미공개
+    bool isShowdown = 2;
+    // 쇼다운 시 "이 시트의 카드를 내 앞으로 가져오는 모션" 대상 시트 번호
+    // 루저: 승자 시트 / 위너: 나 다음으로 높은 패를 가진 상대 시트 / 없으면 0 (모션 없음)
+    int32 revealTargetSeatNumber = 3;
+}
+
+// 게임 로그 메시지 (브로드캐스트)
+// 베팅 액션, 커뮤니티 카드 공개, 게임 시작/종료 등 주요 이벤트마다 전송
+message S_Notice {
+    string message      = 1;
+    NoticeType noticeType = 2; // 로그 종류 — 클라이언트는 이 값으로 스타일(색상/폰트) 분기
+}
+
+enum NoticeType {
+    NOTICE_SYSTEM    = 0; // 게임 시작·종료 등 시스템 메시지 (흰색/회색)
+    NOTICE_ACTION    = 1; // 폴드·체크·콜·레이즈·올인 등 베팅 액션 (기본색)
+    NOTICE_WINNER    = 2; // 승자 확정 메시지 (금색/노란색)
+    NOTICE_COMMUNITY = 3; // 플랍·턴·리버 커뮤니티 카드 공개 (하늘색/청록색)
 }
 
 // 공통 데이터 타입
@@ -115,6 +134,7 @@ message PlayerResult {
     bool isWinner = 4;
     string handRank = 5;     // "풀하우스", "스트레이트" 등
     int64 finalBalance = 6;  // 게임 종료 후 최종 잔액
+    int32 seatNumber = 7;    // 해당 플레이어 시트 번호 (1~5)
 }
 
 enum BetActionType {
