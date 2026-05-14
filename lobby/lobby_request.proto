@@ -1,3 +1,16 @@
 syntax = "proto3";
 
 package lobby_request;
+
+import "common/common.proto";
+
+// UDP 첫 연결 핸드셰이크 (sessionId = 0으로 전송)
+message C_UDP_HELLO {}
+
+// 로비 캐릭터 이동
+message C_LOBBY_MOVE {
+    common.TransformInfo transform = 1;
+}
+
+// 연결 유지 핑
+message C_LOBBY_HEARTBEAT {}
