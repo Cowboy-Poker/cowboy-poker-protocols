@@ -10,7 +10,9 @@ message S_UDP_HELLO {
 }
 
 // 특정 플레이어 이동 브로드캐스트
+// anim_state: bitmask  0x01=점프중  0x02=조준중
 message S_LOBBY_PLAYER_MOVE {
     uint64 session_id              = 1;
     common.TransformInfo transform = 2;
+    uint32 anim_state              = 3;
 }

@@ -31,6 +31,7 @@ enum class PacketType
     C_LOBBY_MOVE        = 301, // 로비 캐릭터 이동 (TransformInfo)
     C_LOBBY_HEARTBEAT   = 302, // 연결 유지 핑
     // 이름 S_UDP_HELLO 는 일부 WinSock/Windows 조합에서 전처리기와 충돌할 수 있음.
-    S_UDP_HANDSHAKE_ACK = 350, // lobby_response.S_UDP_HELLO 와 동일 의미 (sessionId 응답)
-    S_LOBBY_PLAYER_MOVE = 352, // 특정 플레이어 이동 브로드캐스트
+    S_UDP_HANDSHAKE_ACK  = 350, // lobby_response.S_UDP_HELLO 와 동일 의미 (sessionId 응답)
+    S_LOBBY_PLAYER_MOVE  = 352, // 특정 플레이어 이동 브로드캐스트
+    S_LOBBY_PLAYER_LEAVE = 353, // 플레이어 퇴장 — 클라이언트는 해당 sessionId 캐릭터 제거
 };

@@ -8,8 +8,10 @@ import "common/common.proto";
 message C_UDP_HELLO {}
 
 // 로비 캐릭터 이동
+// anim_state: bitmask  0x01=점프중  0x02=조준중
 message C_LOBBY_MOVE {
     common.TransformInfo transform = 1;
+    uint32 anim_state = 2;
 }
 
 // 연결 유지 핑
