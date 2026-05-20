@@ -22,4 +22,12 @@ export const PACKET_TYPE = {
   S_OPEN_COMMUNITY_CARDS: 213,
   S_GAME_RESULT: 214,
   S_NOTICE: 215,
+  C_BATTLE_REQUEST: 216,
+  S_BATTLE_INCOMING: 217,
+
+  // battle entry 220번대
+  C_BATTLE_ACCEPT: 218,        // 피신청자 수락
+  C_BATTLE_REJECT: 219,        // 피신청자 거절
+  S_BATTLE_ACCEPTED: 220,      // 신청자에게 "수락됨" 통보
+  S_BATTLE_ENTER: 223,         // 배틀씬 입장 (신청·피신청자만)
 };
