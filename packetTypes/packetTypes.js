@@ -22,6 +22,12 @@ export const PACKET_TYPE = {
   S_OPEN_COMMUNITY_CARDS: 213,
   S_GAME_RESULT:          214,
   S_NOTICE:               215,
+  C_BATTLE_REQUEST:           216,
+  S_BATTLE_INCOMING:          217,
+  C_BATTLE_ACCEPT:            218,
+  C_BATTLE_REJECT:            219,
+  S_BATTLE_ACCEPTED:          220,
+  S_BATTLE_ENTER:             223,
 
   // UDP — 로비 동기화 300
   C_UDP_HELLO:         300, // 첫 연결 핸드셰이크 (sessionId = 0으로 전송)

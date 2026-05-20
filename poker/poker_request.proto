@@ -29,6 +29,21 @@ message C_BetAction {
     int32 amount = 2; // RAISE일 때만 사용
 }
 
+// 배틀 신청 (같은 방·같은 핸드 참여자에게만)
+message C_BattleRequest {
+    string targetUserId = 1;
+}
+
+// 배틀 수락
+message C_BattleAccept {
+    string fromUserId = 1;
+}
+
+// 배틀 거절
+message C_BattleReject {
+    string fromUserId = 1;
+}
+
 // 베팅 액션 타입
 enum BetActionType {
     FOLD = 0;

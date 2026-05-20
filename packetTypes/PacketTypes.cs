@@ -23,6 +23,12 @@ public enum PacketType : ushort
     S_OpenCommunityCards = 213,
     S_GameResult         = 214,
     S_Notice             = 215,
+    C_BattleRequest          = 216,
+    S_BattleIncoming         = 217,
+    C_BattleAccept           = 218,
+    C_BattleReject           = 219,
+    S_BattleAccepted         = 220,
+    S_BattleEnter            = 223,
 
     // UDP — 로비 동기화 300
     C_UdpHello            = 300,
