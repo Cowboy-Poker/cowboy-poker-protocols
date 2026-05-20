@@ -103,7 +103,7 @@ message S_BattleAccepted {
     string targetUserId = 1;  // 수락한 플레이어 userId
 }
 
-// 신청·피신청자에게만 전송 (배틀씬 입장)
+// 배틀 입장 대상에게 전송
 message S_BattleEnter {
     string player1UserId = 1;
     string player2UserId = 2;
