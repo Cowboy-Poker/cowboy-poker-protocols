@@ -25,9 +25,15 @@ public enum PacketType : ushort
     S_Notice             = 215,
 
     // UDP — 로비 동기화 300
-    C_UdpHello        = 300, // 첫 연결 핸드셰이크 (sessionId = 0으로 전송)
-    C_LobbyMove       = 301, // 로비 캐릭터 이동 (TransformInfo)
-    C_LobbyHeartbeat  = 302, // 연결 유지 핑
-    S_UdpHandshakeAck = 350, // proto lobby_response.S_UDP_HELLO 와 동일 (sessionId 응답)
-    S_LobbyPlayerMove = 352, // 특정 플레이어 이동 브로드캐스트
+    C_UdpHello            = 300,
+    C_LobbyMove           = 301,
+    C_LobbyHeartbeat      = 302,
+    C_BuyWeapon           = 303,
+    C_BattleEnter         = 304,
+    S_UdpHandshakeAck     = 350,
+    S_LobbyPlayerMove     = 352,
+    S_LobbyPlayerLeave    = 353,
+    S_PlayerInfo          = 354,
+    S_BuyWeaponResult     = 355,
+    S_BattleEnterResult   = 356,
 }
