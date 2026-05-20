@@ -90,6 +90,24 @@ message S_GameResult {
     int32 revealTargetSeatNumber = 3;
 }
 
+// 배틀 신청 알림 (신청 당한 플레이어에게만 전송)
+message S_BattleIncoming {
+    string fromUserId = 1;
+    int32 fromSeatNumber = 2;
+    string fromNickname = 3;
+}
+
+// 신청자에게: 피신청자가 수락했음을 통보
+message S_BattleAccepted {
+    string targetUserId = 1;
+}
+
+// 배틀 입장 대상에게 전송
+message S_BattleEnter {
+    string player1UserId = 1;
+    string player2UserId = 2;
+}
+
 // 게임 로그 메시지 (브로드캐스트)
 // 베팅 액션, 커뮤니티 카드 공개, 게임 시작/종료 등 주요 이벤트마다 전송
 message S_Notice {
@@ -114,6 +132,9 @@ message RoomInfo {
     int32 blindAmount = 5; // 빅 블라인드
     RoomState state = 6;
     repeated PlayerInfo players = 7;
+    repeated string readyUserIds = 8;
+    int32 nextHandCountdownRemaining = 9;
+    int64 nextHandCountdownEndsAt = 10;
 }
 
 message PlayerInfo {

@@ -22,11 +22,23 @@ export const PACKET_TYPE = {
   S_OPEN_COMMUNITY_CARDS: 213,
   S_GAME_RESULT:          214,
   S_NOTICE:               215,
+  C_BATTLE_REQUEST:           216,
+  S_BATTLE_INCOMING:          217,
+  C_BATTLE_ACCEPT:            218,
+  C_BATTLE_REJECT:            219,
+  S_BATTLE_ACCEPTED:          220,
+  S_BATTLE_ENTER:             223,
 
   // UDP — 로비 동기화 300
   C_UDP_HELLO:         300, // 첫 연결 핸드셰이크 (sessionId = 0으로 전송)
   C_LOBBY_MOVE:        301, // 로비 캐릭터 이동 (TransformInfo)
-  C_LOBBY_HEARTBEAT:   302, // 연결 유지 핑
-  S_UDP_HANDSHAKE_ACK: 350, // proto lobby_response.S_UDP_HELLO 와 동일 (sessionId 응답)
-  S_LOBBY_PLAYER_MOVE: 352, // 특정 플레이어 이동 브로드캐스트
+  C_LOBBY_HEARTBEAT:     302,
+  C_BUY_WEAPON:          303,
+  C_BATTLE_ENTER:        304,
+  S_UDP_HANDSHAKE_ACK:   350,
+  S_LOBBY_PLAYER_MOVE:   352,
+  S_LOBBY_PLAYER_LEAVE:  353,
+  S_PLAYER_INFO:         354,
+  S_BUY_WEAPON_RESULT:   355,
+  S_BATTLE_ENTER_RESULT: 356,
 };
