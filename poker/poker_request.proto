@@ -36,12 +36,12 @@ message C_BattleRequest {
 
 // 배틀 수락
 message C_BattleAccept {
-    string fromUserId = 1;
+    string fromUserId = 1;  // 수락한 신청자 userId (누구의 신청을 수락하는지)
 }
 
 // 배틀 거절
 message C_BattleReject {
-    string fromUserId = 1;
+    string fromUserId = 1;  // 거절한 신청자 userId
 }
 
 // 베팅 액션 타입
