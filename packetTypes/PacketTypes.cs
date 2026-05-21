@@ -36,6 +36,7 @@ public enum PacketType : ushort
     C_LobbyHeartbeat      = 302,
     C_BuyWeapon           = 303,
     C_BattleEnter         = 304,
+    C_GunShotLobby        = 305,
     S_UdpHandshakeAck     = 350,
     S_LobbyPlayerMove     = 352,
     S_LobbyPlayerLeave    = 353,

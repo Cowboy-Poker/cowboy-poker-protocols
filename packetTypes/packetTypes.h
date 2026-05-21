@@ -48,7 +48,7 @@ enum class PacketType
     // S_PLAYER_INFO (354)  서버 → 클라이언트
     //   핸드셰이크 완료 후 Redis 조회 결과 전송. 총기 구매 등 상태 변경 시에도 재전송됨.
     //   헤더  : [uint64 sessionId][uint32 seq][uint16 id=354]
-    //   페이로드 (raw LE, 최소 50바이트 + 문자열):
+    //   페이로드 (raw LE, 최소 54바이트 + 문자열):
     //     [ 0.. 7]  uint64  sessionId
     //     [ 8..11]  int32   hp
     //     [12..19]  int64   balance
@@ -58,9 +58,10 @@ enum class PacketType
     //     [32..35]  float   pos_z
     //     [36..39]  float   rot
     //     [40..43]  int32   weapon
-    //     [44..47]  int32   ammo_type
-    //     [48..49]  uint16  nickname_len
-    //     [50.. ?]  utf8    nickname
+    //     [44..47]  int32   ammo_type    (강화 단계, 기본 0)
+    //     [48..51]  int32   ammo         (잔탄)
+    //     [52..53]  uint16  nickname_len
+    //     [54.. ?]  utf8    nickname
     //     [  .. +1] uint16  scene_len
     //     [  .. +?] utf8    scene
     //
@@ -80,6 +81,7 @@ enum class PacketType
     //     [?+0..1] uint16  player2_len
     //     [?+2..]  utf8    player2UserId
     C_BATTLE_ENTER       = 304,
+    C_GUN_SHOT_LOBBY     = 305, // 로비 총 발사 — payload 없음, 응답 없음
     S_UDP_HANDSHAKE_ACK  = 350, // 핸드셰이크 응답 — payload: [uint64 sessionId] (8B)
     S_LOBBY_PLAYER_MOVE  = 352, // 플레이어 이동 브로드캐스트
     S_LOBBY_PLAYER_LEAVE = 353, // 플레이어 퇴장 — 해당 sessionId 캐릭터 제거
